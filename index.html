@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Il Battesimo di Vittorio</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background: url('sfondo.jpg') center center / cover no-repeat;
+    font-family: "Great Vibes", cursive;
+  }
+
+  /* COPERTINE */
+  .container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    perspective: 2000px;
+    position: relative;
+    z-index: 2;
+  }
+  .panel {
+    flex: 1;
+    transition: transform 1s ease-in-out;
+    background: rgba(255,253,248,0.8);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05),
+                2px 0 5px rgba(0,0,0,0.1);
+  }
+  .left { transform-origin: left center; border-right: 1px solid rgba(200,200,200,0.6);}
+  .right { transform-origin: right center; border-left: 1px solid rgba(200,200,200,0.6);}
+  .roll-left { transform: rotateY(-100deg);}
+  .roll-right { transform: rotateY(100deg);}
+
+  /* CONTENUTO CENTRALE */
+  .center-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 5;
+    cursor: pointer;
+    padding: 5vw;
+    box-sizing: border-box;
+    transition: opacity 0.5s ease;
+    width: 90%;
+  }
+  .invito-text { 
+    font-size: clamp(2.5rem, 6vw, 5rem); 
+    color: #789262; 
+    font-weight: bold; 
+    margin-bottom: 2vh; 
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+  }
+  .center-content img.logo, .center-content img.elephant {
+    max-width: 70%;
+    height: auto;
+    margin: 2vh 0;
+  }
+  .instruction-text { 
+    margin-top: 3vh; 
+    font-size: clamp(1.5rem, 4vw, 2.5rem); 
+    color: #789262; 
+    font-weight: bold; 
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+    text-align: center;
+  }
+  .hide { opacity: 0; pointer-events: none; }
+
+  /* BIGLIETTO INTERNO */
+  .invito {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* spazio tra top e bottom */
+    align-items: center;
+    background: rgba(255,253,248,0.55);
+    border: 2px solid rgba(224,213,198,0.5);
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
+    padding: 2vh 5vw;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .invito.show { opacity: 1; }
+
+  /* UP e DO */
+  .invito img.top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-height: 10vh;
+    width: auto;
+    z-index: 10;
+  }
+  .invito img.bottom {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    max-height: 10vh;
+    width: auto;
+    z-index: 10;
+  }
+
+  /* Contenuto centrale scrollabile */
+  .invito-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    padding: 12vh 0; /* spazio per top e bottom */
+    box-sizing: border-box;
+  }
+
+  .invito-text-small { font-size: clamp(2rem,6vw,3rem); color:#789262; font-weight:bold;}
+  .invito-name { font-size: clamp(5rem,12vw,7rem); color:#789262; font-weight:bold;}
+  .invito img.separator { max-width: 45%; height: auto; }
+  .invito-date { margin-top: 1vh; ; font-size: clamp(3rem,8vw,4.5rem); color:#444;}
+  .time-date { margin-top: .5vh; margin-bottom: 1vh; font-size: 2rem; color:#444;}
+
+  /* Icone sotto la data */
+  .icon-row {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    gap: 40px;
+    margin-top: 2vh;
+  }
+  .icon-row div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .icon-row img { max-width: 50px; margin-bottom: 5px; }
+
+  /* Ci sarai? pulsanti */
+  .rsvp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+  }
+  .rsvp p {
+    font-size: clamp(2rem,6vw,3rem);
+    font-weight: bold;
+    color: #789262;
+    margin: 0;
+    text-align: center;
+  }
+  .rsvp .rsvp-buttons {
+    display: flex;
+    gap: 3vw;
+  }
+  .rsvp .rsvp-buttons button {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1vw 2vw;
+    border: 3px solid #789262;
+    border-radius: 50%;
+    background: none;
+    color: #789262;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .rsvp .rsvp-buttons button:hover {
+    background: rgba(120,146,98,0.2);
+  }
+
+  @media (max-width: 400px){
+    .invito img.top, .invito img.bottom { max-height: 10vh; }
+    .invito img.separator { max-width: 40%; }
+    .invito-name { font-size: clamp(4rem,10vw,5rem); }
+    .invito-text-small { font-size: clamp(2rem,6vw,2.5rem); }
+    .invito-date { font-size: clamp(2rem,6vw,3.5rem); }
+    .time-date { font-size: 1.5rem; }
+    .icon-row { width: 70%; gap: 20px; }
+    .icon-row img { max-width: 40px; }
+    .rsvp button { font-size: 1.2rem; padding: 8px 20px; }
+    .center-content { width: 95%; }
+    .invito-content { padding: 10vh 0; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- COPERTINE -->
+<div class="container">
+  <div class="panel left"></div>
+  <div class="panel right"></div>
+</div>
+
+<!-- CONTENUTO CENTRALE -->
+<div class="center-content" id="centerContent">
+  <div class="invito-text">Sei invitato al battesimo di Vittorio!</div>
+  <img src="logo_v.png" alt="Logo" class="logo">
+  <div class="instruction-text">Premi il bottone per vedere l'invito</div>
+  <img src="elephant_post.png" alt="Elefantino decorativo" class="elephant">
+</div>
+
+<!-- BIGLIETTO INTERNO -->
+<div class="invito" id="invito">
+  <img src="up.png" alt="Top" class="top">
+  <div class="invito-content">
+    <div class="invito-text-small">Il battesimo di</div>
+    <div class="invito-name">Vittorio</div>
+    <img src="nuvola.png" alt="Separatore" class="separator">
+    <div class="invito-date">07 Dicembre 2025</div>
+    <div class="time-date">ore 10.00</div>
+
+    <div class="icon-row">
+      <a href="https://www.google.com/maps/dir//Piazza+Duomo,+36,+95016+Mascali+CT/@37.7580596,15.1132807,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x131406bb4c21f49d:0x3c7f2e6c8eeee66!2m2!1d15.1956817!2d37.7580883?hl=it&entry=ttu&g_ep=EgoyMDI1MDgyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank"><img src="chiesa.png" alt=""><span></span></a>
+      <a><img src="risto.png" alt=""><span></span></a>
+    </div>
+
+    <div class="rsvp">
+      <p>Ci sarai?</p>
+      <div class="rsvp-buttons">
+        <a href="https://wa.me/393896407292?text=Ciao!%20Parteciperemo%20al%20battesimo%20e%20saremo%20in%20[NUMERO%20DI%20PARTECIPANTI].%0ALe%20nostre%20intolleranze%20alimentari%20sono%3A%20[INTOLLERANZE]" target="_blank">
+          <button id="siBtn">Si</button>
+        </a>        
+        <a href="https://wa.me/393896407292?text=Ciao!%0ANo%20purtroppo%20non%20potremo%20essere%20presenti!" target="_blank">
+          <button id="noBtn">No</button>
+        </a>
+      </div>
+    </div>
+  </div>
+  <img src="do.png" alt="Bottom" class="bottom">
+</div>
+
+<script>
+  const centerContent = document.getElementById('centerContent');
+  const left = document.querySelector('.left');
+  const right = document.querySelector('.right');
+  const invito = document.getElementById('invito');
+
+  centerContent.addEventListener('click', () => {
+    left.classList.add('roll-left');
+    right.classList.add('roll-right');
+    centerContent.classList.add('hide');
+    setTimeout(()=>{ invito.classList.add('show'); }, 1000);
+  });
+</script>
+
+</body>
+</html>
