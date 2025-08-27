@@ -8,7 +8,6 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
-    /* BODY E HTML */
     body,
     html {
       margin: 0;
@@ -27,7 +26,7 @@
       height: 100%;
       perspective: 2000px;
       position: relative;
-      z-index: 1;
+      z-index: 5; /* copertine davanti al contenuto */
     }
 
     .panel {
@@ -58,24 +57,24 @@
     /* CONTENUTO CENTRALE */
     .center-content {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      top: 0;
+      left: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      z-index: 2;
       cursor: pointer;
-      padding: 20px;
+      padding: 5vw;
       box-sizing: border-box;
-      max-width: 95%;
       transition: opacity 0.5s ease;
+      width: 100%;
+      height: 100vh;
+      z-index: 6; /* sopra le copertine */
     }
 
     .invito-text {
-      font-size: clamp(2rem, 6vw, 4rem);
+      font-size: clamp(3rem, 7vw, 6rem);
       color: #789262;
       font-weight: bold;
       margin-bottom: 2vh;
@@ -84,14 +83,14 @@
 
     .center-content img.logo,
     .center-content img.elephant {
-      max-width: 60%;
+      max-width: 65%;
       height: auto;
-      margin: 2vh 0;
+      margin: 3vh 0;
     }
 
     .instruction-text {
       margin-top: 3vh;
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-size: clamp(2rem, 5vw, 3.2rem);
       color: #789262;
       font-weight: bold;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
@@ -105,7 +104,9 @@
 
     /* BIGLIETTO INTERNO */
     .invito {
-      position: relative;
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       min-height: 100dvh;
       display: flex;
@@ -115,10 +116,7 @@
       background: rgba(255, 253, 248, 0.55);
       border: 2px solid rgba(224, 213, 198, 0.5);
       box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.1);
-      padding-top: env(safe-area-inset-top, 2vh);
-      padding-bottom: env(safe-area-inset-bottom, 2vh);
-      padding-left: 5vw;
-      padding-right: 5vw;
+      padding: 2vh 5vw;
       box-sizing: border-box;
       opacity: 0;
       transition: opacity 1s ease;
@@ -128,9 +126,9 @@
 
     .invito.show {
       opacity: 1;
+      z-index: 10; /* portato sopra alle copertine */
     }
 
-    /* UP e DO */
     .invito img.top {
       position: absolute;
       top: 0;
@@ -144,12 +142,11 @@
       position: absolute;
       bottom: 0;
       right: 0;
-      max-height: 10vh;
+      max-height: 15vh;
       width: auto;
       z-index: 10;
     }
 
-    /* Contenuto centrale scrollabile */
     .invito-content {
       width: 100%;
       display: flex;
@@ -191,7 +188,6 @@
       color: #444;
     }
 
-    /* Icone sotto la data */
     .icon-row {
       display: flex;
       justify-content: space-between;
@@ -200,25 +196,16 @@
       margin-top: 2vh;
     }
 
-    .icon-row div {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
     .icon-row img {
       max-width: 50px;
-      margin-bottom: 5px;
     }
 
-    /* Ci sarai? pulsanti */
     .rsvp {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 2vh;
-      margin-top: 2vh;
-      margin-bottom: 2vh;
+      margin: 2vh 0;
     }
 
     .rsvp p {
@@ -248,42 +235,6 @@
 
     .rsvp .rsvp-buttons button:hover {
       background: rgba(120, 146, 98, 0.2);
-    }
-
-    @media (max-width: 400px) {
-      .invito img.separator {
-        max-width: 40%;
-      }
-
-      .invito-name {
-        font-size: clamp(4rem, 10vw, 5rem);
-      }
-
-      .invito-text-small {
-        font-size: clamp(2rem, 6vw, 2.5rem);
-      }
-
-      .invito-date {
-        font-size: clamp(2rem, 6vw, 3.5rem);
-      }
-
-      .time-date {
-        font-size: 1.5rem;
-      }
-
-      .icon-row {
-        width: 70%;
-        gap: 20px;
-      }
-
-      .icon-row img {
-        max-width: 40px;
-      }
-
-      .rsvp button {
-        font-size: 1.2rem;
-        padding: 8px 20px;
-      }
     }
   </style>
 </head>
@@ -315,23 +266,19 @@
       <div class="time-date">ore 10.00</div>
 
       <div class="icon-row">
-        <a href="https://www.google.com/maps/dir//Piazza+Duomo,+36,+95016+Mascali+CT/@37.7580596,15.1132807,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x131406bb4c21f49d:0x3c7f2e6c8eeee66!2m2!1d15.1956817!2d37.7580883?hl=it&entry=ttu"
-          target="_blank"><img src="chiesa.png" alt=""></a>
-        <a><img src="risto.png" alt=""></a>
+        <a href="https://www.google.com/maps/dir//Piazza+Duomo,+36,+95016+Mascali+CT" target="_blank">
+          <img src="chiesa.png" alt="Chiesa">
+        </a>
+        <a><img src="risto.png" alt="Ristorante"></a>
       </div>
 
       <div class="rsvp">
         <p>Ci sarai?</p>
         <div class="rsvp-buttons">
-          <a
-            href="https://wa.me/393896407292?text=Ciao!%20Parteciperemo%20al%20battesimo%20e%20saremo%20in%20[NUMERO%20DI%20PARTECIPANTI].%0ALe%20nostre%20intolleranze%20alimentari%20sono%3A%20[INTOLLERANZE]"
-            target="_blank">
-            <button id="siBtn">Si</button>
-          </a>
-          <a href="https://wa.me/393896407292?text=Ciao!%0ANo%20purtroppo%20non%20potremo%20essere%20presenti!"
-            target="_blank">
-            <button id="noBtn">No</button>
-          </a>
+          <a href="https://wa.me/393896407292?text=Ciao!%20Parteciperemo%20al%20battesimo..."
+            target="_blank"><button>Si</button></a>
+          <a href="https://wa.me/393896407292?text=Ciao!%20No%20purtroppo..."
+            target="_blank"><button>No</button></a>
         </div>
       </div>
     </div>
@@ -348,10 +295,11 @@
       left.classList.add('roll-left');
       right.classList.add('roll-right');
       centerContent.classList.add('hide');
-      setTimeout(() => { invito.classList.add('show'); }, 1000);
+      setTimeout(() => {
+        invito.classList.add('show');
+      }, 1000);
     });
   </script>
 
 </body>
-
 </html>
