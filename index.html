@@ -8,7 +8,8 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
-    html, body {
+    html,
+    body {
       margin: 0;
       padding: 0;
       width: 100dvw;
@@ -32,18 +33,36 @@
       flex: 1;
       transition: transform 1s ease-in-out;
       background: rgba(255, 253, 248, 0.8);
-      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05), 2px 0 5px rgba(0, 0, 0, 0.1);
+      /* Ombreggiatura più marcata sulla piega centrale */
+      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.15),
+        /* interno */
+        2px 0 8px rgba(0, 0, 0, 0.15);
+      /* bordo centrale più visibile */
     }
 
-    .left { transform-origin: left center; border-right: 1px solid rgba(200,200,200,0.6);}
-    .right { transform-origin: right center; border-left: 1px solid rgba(200,200,200,0.6);}
-    .roll-left { transform: rotateY(-100deg);}
-    .roll-right { transform: rotateY(100deg);}
+    .left {
+      transform-origin: left center;
+      border-right: 1px solid rgba(200, 200, 200, 0.6);
+    }
+
+    .right {
+      transform-origin: right center;
+      border-left: 1px solid rgba(200, 200, 200, 0.6);
+    }
+
+    .roll-left {
+      transform: rotateY(-100deg);
+    }
+
+    .roll-right {
+      transform: rotateY(100deg);
+    }
 
     /* CONTENUTO CENTRALE */
     .center-content {
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100dvw;
       height: 100dvh;
       display: flex;
@@ -62,7 +81,7 @@
       font-size: clamp(2.5rem, 6vw, 5rem);
       color: #789262;
       font-weight: bold;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
       line-height: 1.1;
       margin: 0;
     }
@@ -81,24 +100,28 @@
       font-size: clamp(1.5rem, 4vw, 2.5rem);
       color: #789262;
       font-weight: bold;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
     }
 
-    .hide { opacity: 0; pointer-events: none; }
+    .hide {
+      opacity: 0;
+      pointer-events: none;
+    }
 
     /* BIGLIETTO INTERNO */
     .invito {
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100dvw;
       height: 100dvh;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      background: rgba(255,253,248,0.55);
-      border: 2px solid rgba(224,213,198,0.5);
-      box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
+      background: rgba(255, 253, 248, 0.55);
+      border: 2px solid rgba(224, 213, 198, 0.5);
+      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.1);
       padding: 1vh 5vw;
       box-sizing: border-box;
       opacity: 0;
@@ -106,10 +129,22 @@
       z-index: 1;
     }
 
-    .invito.show { opacity: 1; z-index: 10; }
+    .invito.show {
+      opacity: 1;
+      z-index: 10;
+    }
 
-    .invito img.top { max-height: 10vh; width: auto; align-self: flex-start; }
-    .invito img.bottom { max-height: 10vh; width: auto; align-self: flex-end; }
+    .invito img.top {
+      max-height: 10vh;
+      width: auto;
+      align-self: flex-start;
+    }
+
+    .invito img.bottom {
+      max-height: 10vh;
+      width: auto;
+      align-self: flex-end;
+    }
 
     .invito-content {
       display: flex;
@@ -121,20 +156,67 @@
       box-sizing: border-box;
     }
 
-    .invito-text-small { font-size: clamp(2rem,6vw,3rem); color:#789262; font-weight:bold; }
-    .invito-name { font-size: clamp(3rem,10vw,5rem); color:#789262; font-weight:bold; }
-    .invito img.separator { max-width: 35%; height: auto; margin: 1vh 0; }
-    .invito-date { font-size: clamp(2.5rem,8vw,4.5rem); color:#444; }
-    .time-date { font-size: clamp(1.5rem,5vw,3rem); color:#444; }
+    .invito-text-small {
+      font-size: clamp(2rem, 6vw, 3rem);
+      color: #789262;
+      font-weight: bold;
+    }
 
-    .icon-row { display: flex; justify-content: center; gap: 10vw; margin-top: 1vh; }
-    .icon-row img { max-width: 50px; }
+    .invito-name {
+      font-size: clamp(3rem, 10vw, 5rem);
+      color: #789262;
+      font-weight: bold;
+    }
 
-    .rsvp { display: flex; flex-direction: column; align-items: center; gap: 2vh; margin-top: 1vh; }
-    .rsvp p { font-size: clamp(1rem,6vw,3rem); font-weight: bold; color: #789262; margin:0.5vh }
-    .rsvp .rsvp-buttons { display: flex; gap: 5vw; }
+    .invito img.separator {
+      max-width: 35%;
+      height: auto;
+      margin: 1vh 0;
+    }
+
+    .invito-date {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      color: #444;
+    }
+
+    .time-date {
+      font-size: clamp(1.5rem, 5vw, 3rem);
+      color: #444;
+    }
+
+    .icon-row {
+      display: flex;
+      justify-content: center;
+      gap: 10vw;
+      margin-top: 1vh;
+    }
+
+    .icon-row img {
+      max-width: 50px;
+    }
+
+    .rsvp {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2vh;
+      margin-top: 1vh;
+    }
+
+    .rsvp p {
+      font-size: clamp(1rem, 6vw, 3rem);
+      font-weight: bold;
+      color: #789262;
+      margin: 0.5vh
+    }
+
+    .rsvp .rsvp-buttons {
+      display: flex;
+      gap: 5vw;
+    }
+
     .rsvp .rsvp-buttons button {
-      font-size: clamp(1.5rem,4vw,2rem);
+      font-size: clamp(1.5rem, 4vw, 2rem);
       font-weight: bold;
       padding: 1vw 2vw;
       border: 3px solid #789262;
@@ -144,12 +226,24 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-    .rsvp .rsvp-buttons button:hover { background: rgba(120,146,98,0.2); }
+
+    .rsvp .rsvp-buttons button:hover {
+      background: rgba(120, 146, 98, 0.2);
+    }
 
     @media(max-width: 400px) {
-      .center-content img.logo { max-height: 15vh; }
-      .center-content img.elephant { max-height: 20vh; }
-      .invito img.top, .invito img.bottom { max-height: 8vh; }
+      .center-content img.logo {
+        max-height: 15vh;
+      }
+
+      .center-content img.elephant {
+        max-height: 20vh;
+      }
+
+      .invito img.top,
+      .invito img.bottom {
+        max-height: 8vh;
+      }
     }
   </style>
 </head>
