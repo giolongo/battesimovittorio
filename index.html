@@ -7,11 +7,12 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
+  /* BODY E HTML */
   body, html {
     margin: 0;
     padding: 0;
     width: 100%;
-    min-height: 100vh;
+    min-height: 100dvh; /* correzione per iOS */
     overflow: hidden;
     background: url('sfondo.jpg') center center / cover no-repeat;
     font-family: "Great Vibes", cursive;
@@ -30,8 +31,7 @@
     flex: 1;
     transition: transform 1s ease-in-out;
     background: rgba(255,253,248,0.8);
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.05),
-                2px 0 5px rgba(0,0,0,0.1);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05), 2px 0 5px rgba(0,0,0,0.1);
   }
   .left { transform-origin: left center; border-right: 1px solid rgba(200,200,200,0.6);}
   .right { transform-origin: right center; border-left: 1px solid rgba(200,200,200,0.6);}
@@ -52,9 +52,9 @@
     z-index: 5;
     cursor: pointer;
     padding: 5vw;
+    width: 90%;
     box-sizing: border-box;
     transition: opacity 0.5s ease;
-    width: 90%;
   }
   .invito-text { 
     font-size: clamp(2.5rem, 6vw, 5rem); 
@@ -82,15 +82,18 @@
   .invito {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* spazio tra top e bottom */
+    justify-content: space-between;
     align-items: center;
     background: rgba(255,253,248,0.55);
     border: 2px solid rgba(224,213,198,0.5);
     box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
-    padding: 2vh 5vw;
+    padding-top: env(safe-area-inset-top, 2vh);
+    padding-bottom: env(safe-area-inset-bottom, 2vh);
+    padding-left: 5vw;
+    padding-right: 5vw;
     box-sizing: border-box;
     opacity: 0;
     transition: opacity 1s ease;
@@ -124,14 +127,15 @@
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
-    padding: 12vh 0; /* spazio per top e bottom */
+    padding: clamp(8vh,12%,12vh) 0; /* spazio per top e bottom */
     box-sizing: border-box;
+    flex-shrink: 1;
   }
 
   .invito-text-small { font-size: clamp(2rem,6vw,3rem); color:#789262; font-weight:bold;}
   .invito-name { font-size: clamp(5rem,12vw,7rem); color:#789262; font-weight:bold;}
   .invito img.separator { max-width: 45%; height: auto; }
-  .invito-date { margin-top: 1vh; ; font-size: clamp(3rem,8vw,4.5rem); color:#444;}
+  .invito-date { margin-top: 1vh; font-size: clamp(3rem,8vw,4.5rem); color:#444;}
   .time-date { margin-top: .5vh; margin-bottom: 1vh; font-size: 2rem; color:#444;}
 
   /* Icone sotto la data */
@@ -195,7 +199,7 @@
     .icon-row img { max-width: 40px; }
     .rsvp button { font-size: 1.2rem; padding: 8px 20px; }
     .center-content { width: 95%; }
-    .invito-content { padding: 10vh 0; }
+    .invito-content { padding: clamp(6vh,10%,10vh) 0; }
   }
 
 </style>
@@ -227,8 +231,8 @@
     <div class="time-date">ore 10.00</div>
 
     <div class="icon-row">
-      <a href="https://www.google.com/maps/dir//Piazza+Duomo,+36,+95016+Mascali+CT/@37.7580596,15.1132807,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x131406bb4c21f49d:0x3c7f2e6c8eeee66!2m2!1d15.1956817!2d37.7580883?hl=it&entry=ttu&g_ep=EgoyMDI1MDgyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank"><img src="chiesa.png" alt=""><span></span></a>
-      <a><img src="risto.png" alt=""><span></span></a>
+      <a href="https://www.google.com/maps/dir//Piazza+Duomo,+36,+95016+Mascali+CT/@37.7580596,15.1132807,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x131406bb4c21f49d:0x3c7f2e6c8eeee66!2m2!1d15.1956817!2d37.7580883?hl=it&entry=ttu&g_ep=EgoyMDI1MDgyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank"><img src="chiesa.png" alt=""></a>
+      <a><img src="risto.png" alt=""></a>
     </div>
 
     <div class="rsvp">
