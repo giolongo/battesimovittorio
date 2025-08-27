@@ -8,7 +8,6 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
-    /* BODY E HTML */
     html, body {
       margin: 0;
       padding: 0;
@@ -49,7 +48,7 @@
       height: 100dvh;
       display: flex;
       flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: space-around;
       align-items: center;
       text-align: center;
       cursor: pointer;
@@ -60,20 +59,26 @@
     }
 
     .invito-text {
-      font-size: clamp(3rem, 7vw, 6rem);
+      font-size: clamp(2.5rem, 6vw, 5rem);
       color: #789262;
       font-weight: bold;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
       line-height: 1.1;
+      margin: 0;
     }
 
-    .center-content img.logo, .center-content img.elephant {
-      max-width: 60%;
-      height: auto;
+    .center-content img.logo {
+      max-height: 20vh;
+      width: auto;
+    }
+
+    .center-content img.elephant {
+      max-height: 25vh;
+      width: auto;
     }
 
     .instruction-text {
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
       color: #789262;
       font-weight: bold;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
@@ -142,8 +147,9 @@
     .rsvp .rsvp-buttons button:hover { background: rgba(120,146,98,0.2); }
 
     @media(max-width: 400px) {
+      .center-content img.logo { max-height: 15vh; }
+      .center-content img.elephant { max-height: 20vh; }
       .invito img.top, .invito img.bottom { max-height: 8vh; }
-      .center-content img.logo, .center-content img.elephant { max-width: 70%; }
     }
   </style>
 </head>
