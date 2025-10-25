@@ -15,7 +15,7 @@
       width: 100dvw;
       height: 100dvh;
       overflow: hidden;
-      background: url('sfondo.jpg') center center / cover no-repeat;
+      background: url('sfondo.png') center center / cover no-repeat;
       font-family: "Great Vibes", cursive;
     }
 
@@ -79,7 +79,7 @@
 
     .invito-text {
       font-size: clamp(2.5rem, 6vw, 5rem);
-      color: #789262;
+      color: #5F6E73;
       font-weight: bold;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
       line-height: 1.1;
@@ -91,14 +91,31 @@
       width: auto;
     }
 
+    .elephant {
+  transform-origin: 50% 90%; /* il punto intorno a cui ruota: quasi alla base */
+  animation: rock 2s ease-in-out infinite;
+}
+
+@keyframes rock {
+  0% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(6deg);
+  }
+  100% {
+    transform: rotate(-6deg);
+  }
+}
+
     .center-content img.elephant {
       max-height: 25vh;
       width: auto;
     }
 
     .instruction-text {
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      color: #789262;
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      color: #5F6E73;
       font-weight: bold;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
     }
@@ -134,6 +151,14 @@
       z-index: 10;
     }
 
+    .top {
+      height: 10vh;
+    }
+    
+    .bottom {
+      height: 10vh;
+    }
+
     .invito img.top {
       max-height: 10vh;
       width: auto;
@@ -157,14 +182,14 @@
     }
 
     .invito-text-small {
-      font-size: clamp(2rem, 6vw, 3rem);
-      color: #789262;
+      font-size: clamp(3rem, 6vw, 3rem);
+      color: #5F6E73;
       font-weight: bold;
     }
 
     .invito-name {
-      font-size: clamp(3rem, 10vw, 5rem);
-      color: #789262;
+      font-size: clamp(3.5rem, 10vw, 5rem);
+      color: #B30207;
       font-weight: bold;
     }
 
@@ -176,12 +201,12 @@
 
     .invito-date {
       font-size: clamp(2.5rem, 8vw, 4.5rem);
-      color: #444;
+      color: #5F6E73;
     }
 
     .time-date {
-      font-size: clamp(1.5rem, 5vw, 3rem);
-      color: #444;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: #5F6E73;
     }
 
     .icon-row {
@@ -204,9 +229,9 @@
     }
 
     .rsvp p {
-      font-size: clamp(1rem, 6vw, 3rem);
+      font-size: clamp(1rem, 8vw, 3rem);
       font-weight: bold;
-      color: #789262;
+      color: #5F6E73;
       margin: 0.5vh
     }
 
@@ -219,10 +244,10 @@
       font-size: clamp(1.5rem, 4vw, 2rem);
       font-weight: bold;
       padding: 1vw 2vw;
-      border: 3px solid #789262;
+      border: 3px solid #5F6E73;
       border-radius: 50%;
       background: none;
-      color: #789262;
+      color: #5F6E73;
       cursor: pointer;
       transition: all 0.3s ease;
     }
@@ -233,7 +258,7 @@
 
     @media(max-width: 400px) {
       .center-content img.logo {
-        max-height: 15vh;
+        max-height: 20vh;
       }
 
       .center-content img.elephant {
@@ -260,15 +285,16 @@
   <div class="center-content" id="centerContent">
     <div class="invito-text">Sei invitato al battesimo di Vittorio!</div>
     <img src="logo_v.png" alt="Logo" class="logo">
-    <div class="instruction-text">Premi il bottone per vedere l'invito</div>
-    <img src="elephant_post.png" alt="Elefantino decorativo" class="elephant">
+    <!-- <div class="instruction-text">Premi il bottone per vedere l'invito</div> -->
+    <img src="post.png" alt="Elefantino decorativo" class="elephant">
   </div>
 
   <!-- BIGLIETTO INTERNO -->
   <div class="invito" id="invito">
-    <img src="up.png" alt="Top" class="top">
+    <!-- <img src="up.png" alt="Top" class="top"> -->
+    <div class="top"></div>
     <div class="invito-content">
-      <div class="invito-text-small">Il battesimo di</div>
+      <div class="invito-text-small">Il Battesimo di</div>
       <div class="invito-name">Vittorio</div>
       <img src="nuvola.png" alt="Separatore" class="separator">
       <div class="invito-date">07 Dicembre 2025</div>
@@ -289,7 +315,8 @@
         </div>
       </div>
     </div>
-    <img src="do.png" alt="Bottom" class="bottom">
+    <div class="bottom"></div>
+    <!-- <img src="do.png" alt="Bottom" class="bottom"> -->
   </div>
 
   <script>
