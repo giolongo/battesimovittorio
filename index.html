@@ -240,21 +240,28 @@
       gap: 5vw;
     }
 
-    .rsvp .rsvp-buttons button {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      font-weight: bold;
-      padding: 1vw 2vw;
-      border: 3px solid #5F6E73;
-      border-radius: 50%;
-      background: none;
-      color: #5F6E73;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+.rsvp .rsvp-buttons button {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: 2px solid #5F6E73;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  color: #5F6E73;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+    text-decoration: none;
+}
 
-    .rsvp .rsvp-buttons button:hover {
-      background: rgba(120, 146, 98, 0.2);
-    }
+.rsvp .rsvp-buttons button:hover {
+  background: rgba(95, 110, 115, 0.15);
+  transform: scale(1.05);
+}
 
     @media(max-width: 400px) {
       .center-content img.logo {
@@ -304,14 +311,14 @@
         <a href="https://www.google.com/maps/dir//Piazza+Duomo,+36,+95016+Mascali+CT/@37.7580596,15.1132807,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x131406bb4c21f49d:0x3c7f2e6c8eeee66!2m2!1d15.1956817!2d37.7580883?hl=it&entry=ttu&g_ep=EgoyMDI1MDgyNC4wIKXMDSoASAFQAw==" target="_blank">
           <img src="chiesa.png" alt="Chiesa">
         </a>
-        <a><img src="risto.png" alt="Ristorante"></a>
+        <a target="_blank" href="https://google.com/maps?gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIJCAEQABgKGIAEMg8IAhAuGAoYrwEYxwEYgAQyCggDEAAYgAQYogQyBwgEEAAY7wUyCggFEAAYgAQYogQyCggGEAAYgAQYogTSAQgyMjkyajBqN6gCALACAA&um=1&ie=UTF-8&fb=1&gl=it&sa=X&geocode=KTX8p358BRQTMUcpPHpQoTx8&daddr=Lungomare+Cottone,+95013+Fiumefreddo+di+Sicilia+CT"><img src="risto.png" alt="Ristorante"></a>
       </div>
 
       <div class="rsvp">
         <p>Ci sarai?</p>
         <div class="rsvp-buttons">
-          <a href="https://wa.me/393896407292?text=Ciao!%20Parteciperemo%20al%20battesimo%20e%20saremo%20in%20[NUMERO%20DI%20PARTECIPANTI].%0ALe%20nostre%20intolleranze%20alimentari%20sono%3A%20[INTOLLERANZE]" target="_blank"><button>Si</button></a>
-          <a href="https://wa.me/393896407292?text=Ciao!%0ANo%20purtroppo%20non%20potremo%20essere%20presenti!" target="_blank"><button>No</button></a>
+          <a style="text-decoration: none;" href="https://wa.me/393896407292?text=Ciao!%20Parteciperemo%20al%20battesimo%20e%20saremo%20in%20[NUMERO%20DI%20PARTECIPANTI].%0ALe%20nostre%20intolleranze%20alimentari%20sono%3A%20[INTOLLERANZE]" target="_blank"><button>Si</button></a>
+          <a style="text-decoration: none;" href="https://wa.me/393896407292?text=Ciao!%0ANo%20purtroppo%20non%20potremo%20essere%20presenti!" target="_blank"><button>No</button></a>
         </div>
       </div>
     </div>
